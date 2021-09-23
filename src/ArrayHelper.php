@@ -41,7 +41,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *     array of columns).
          * @since  0.1.2
          */
-        public static function diff(array $from, array $to)
+        public static function diff(array $from, array $to): array
         {
             $diffs = [];
 
@@ -122,7 +122,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @see   http://php.net/manual/en/function.array-filter.php#99073  Acid24's filter
          *    by key function on on array_filter() man page
          */
-        public static function filterByKey($array, $callback)
+        public static function filterByKey(array $array, callable $callback): array
         {
             $filtered = array();
 
@@ -180,7 +180,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $array is not an array
          * @throws  InvalidArgumentException  if $prefix is not a string
          */
-        public static function filterByKeyPrefix($array, $prefix)
+        public static function filterByKeyPrefix(array $array, string $prefix): array
         {
             $filtered = array();
 
@@ -245,7 +245,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $haystack is not an array
          * @throws  InvalidArgumentException  if $wildcard is not a string
          */
-        public static function inArray($needle, $haystack, $wildcard = '*')
+        public static function inArray(string $needle, array $haystack, string $wildcard = '*'): bool
         {
             $inArray = false;
 
@@ -327,7 +327,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @return  bool  true if the array has a string key (excluding int strings)
          */
-        public static function isAssoc($array)
+        public static function isAssoc(array $array): bool
         {
             $isAssoc = false;
 
@@ -391,7 +391,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $array is not an array
          * @throws  InvalidArgumentException  if $isZeroEmpty is not a bool value
          */
-        public static function isEmpty($key, $array, $isZeroEmpty = true)
+        public static function isEmpty(string $key, array $array, bool $isZeroEmpty = true): bool
         {
             $isEmpty = true;
 
@@ -460,7 +460,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @see     http://us1.php.net/str_replace  str_replace() man page
          */
-        public static function keyStringReplace($search, $replace, $array)
+        public static function keyStringReplace($search, $replace, array $array): array
         {
             $replaced = array();
 
@@ -515,7 +515,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *     O'Reilly's PHPCookbook
          * @since  0.1.2
          */
-        public static function permute(array $set)
+        public static function permute(array $set): array
         {
             $perms = [];
 
@@ -563,7 +563,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $array is not an array of arrays with
          *    the key $field
          */
-        public static function sortByField($array, $field, $sort = 'asc')
+        public static function sortByField(array $array, string $field, string $sort = 'asc'): array
         {
             // if $array, $field, and $sort are given
             if ($array !== null && $field !== null && $sort !== null) {
@@ -655,7 +655,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $array is not an array of objects with
          *    the public property $property
          */
-        public static function sortByProperty($array, $property, $sort = 'asc')
+        public static function sortByProperty(array $array, string $property, string $sort = 'asc'): array
         {
             // if $array, $property, and $sort are given
             if ($array !== null && $property !== null && $sort !== null) {
@@ -751,7 +751,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @throws  InvalidArgumentException  if $array is not an array of objects with
          *     the public property $property
          */
-        public static function sortByMethod($array, $method, $sort = 'asc')
+        public static function sortByMethod(array $array, string $method, string $sort = 'asc'): array
         {
             // if $array, $method, and $sort are given
             if ($array !== null && $method !== null && $sort !== null) {
@@ -833,7 +833,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @copyright: 713uk13m <dev@nguyenanhung.com>
          * @time     : 08/18/2021 21:58
          */
-        public static function arrayQuickSort($array = array())
+        public static function arrayQuickSort(array $array = array()): array
         {
             // find array size
             $length = count($array);
@@ -886,14 +886,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * Function arrayToObject
          *
          * @param array|mixed $array
-         * @param bool        $str_to_lower
+         * @param bool        $strToLower
          *
          * @return array|false|\stdClass
          * @author   : 713uk13m <dev@nguyenanhung.com>
          * @copyright: 713uk13m <dev@nguyenanhung.com>
          * @time     : 08/18/2021 23:49
          */
-        public static function arrayToObject($array = [], $str_to_lower = false)
+        public static function arrayToObject($array = [], bool $strToLower = false)
         {
             if (!is_array($array)) {
                 return $array;
@@ -902,7 +902,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
             if (count($array) > 0) {
                 foreach ($array as $name => $value) {
                     $name = trim($name);
-                    if ($str_to_lower === true) {
+                    if ($strToLower === true) {
                         $name = strtolower($name);
                     }
                     if (!empty($name)) {
@@ -928,7 +928,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @copyright: 713uk13m <dev@nguyenanhung.com>
          * @time     : 08/02/2020 38:12
          */
-        protected static function getNextPermutation($p, $size)
+        protected static function getNextPermutation($p, $size): bool
         {
             // slide down the array looking for where we're smaller than the next guy
             for ($i = $size - 1; $i >= 0 && $p[$i] >= $p[$i + 1]; --$i) {

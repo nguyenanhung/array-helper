@@ -18,7 +18,7 @@ if (!function_exists('arrayQuickSort')) {
      *
      * @return array
      */
-    function arrayQuickSort($array = array())
+    function arrayQuickSort($array = array()): array
     {
         return nguyenanhung\Libraries\ArrayHelper\ArrayHelper::arrayQuickSort($array);
     }
@@ -35,7 +35,7 @@ if (!function_exists('arrayToObject')) {
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 08/18/2021 23:40
      */
-    function arrayToObject($array = array(), $strToLower = false)
+    function arrayToObject($array = array(), bool $strToLower = false)
     {
         return nguyenanhung\Libraries\ArrayHelper\ArrayHelper::arrayToObject($array, $strToLower);
     }
