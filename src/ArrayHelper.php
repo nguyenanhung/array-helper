@@ -29,8 +29,8 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
         /**
          * Returns the diff between $from and $to arrays
          *
-         * @param string[]  the actual array
-         * @param string[]  the expected array
+         * @param string[] $from the actual array
+         * @param string[] $to   the expected array
          *
          * @return  array[]  an array of arrays with keys 'value', the string value, and
          *     'mask', and integer mask where -1 means deleted, 0 means unchanged, and 1
@@ -43,7 +43,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          */
         public static function diff(array $from, array $to)
         {
-            $diffs = [];
+            $diffs = array();
 
             $dm = array();
             $n1 = count($from);
@@ -60,11 +60,11 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
             for ($i = 0; $i < $n1; $i++) {
                 for ($j = 0; $j < $n2; $j++) {
                     if ($from[$i] === $to[$j]) {
-                        $ad         = $dm[$i - 1][$j - 1];
+                        $ad = $dm[$i - 1][$j - 1];
                         $dm[$i][$j] = $ad + 1;
                     } else {
-                        $a1         = $dm[$i - 1][$j];
-                        $a2         = $dm[$i][$j - 1];
+                        $a1 = $dm[$i - 1][$j];
+                        $a2 = $dm[$i][$j - 1];
                         $dm[$i][$j] = max($a1, $a2);
                     }
                 }
@@ -141,19 +141,13 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             }
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two to be a callable function"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two to be a callable function");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects paramater one to be an array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects paramater one to be an array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two parameters, an array and a callable function"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two parameters, an array and a callable function");
             }
 
             return $filtered;
@@ -193,24 +187,18 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $array is not empty
                         if (!empty($array)) {
                             // filter the array by the key's prefix
-                            $filtered = self::filterByKey($array, function ($k) use ($prefix) {
+                            $filtered = self::filterByKey($array, function($k) use ($prefix) {
                                 return strpos($k, $prefix) === 0;
                             });
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two to be a string prefix"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two to be a string prefix");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one to be an array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one to be an array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two parameters, an array and a string prefix"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two parameters, an array and a string prefix");
             }
 
             return $filtered;
@@ -261,7 +249,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             if (strpos($needle, $wildcard) !== false) {
                                 // determine if the neeedle starts or ends with the wildcard
                                 $startsWith = Str::startsWith($needle, $wildcard);
-                                $endsWith   = Str::endsWith($needle, $wildcard);
+                                $endsWith = Str::endsWith($needle, $wildcard);
                                 // set the *actual* needle
                                 $needle = str_ireplace($wildcard, '', $needle);
                                 // loop through the haystack
@@ -282,24 +270,16 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 $inArray = in_array($needle, $haystack);
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects parameter three, the wildcard character, to be a string"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, the wildcard character, to be a string");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two, the haystack, to be an array"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two, the haystack, to be an array");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one, the needle, to be a string"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one, the needle, to be a string");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two or three parameters: needle, haystack, and wildcard"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two or three parameters: needle, haystack, and wildcard");
             }
 
             return $inArray;
@@ -414,24 +394,16 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 }
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects parameter three, allow zeros, to be a bool"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, allow zeros, to be a bool");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two, array, to be an array"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two, array, to be an array");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one, key, to be a string key name"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one, key, to be a string key name");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two parameters, a string key name and an array"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two parameters, a string key name and an array");
             }
 
             return $isEmpty;
@@ -476,30 +448,22 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             if (!empty($array)) {
                                 // flip the array, search/replace, and flip again
                                 $replaced = array_flip($array);
-                                $replaced = array_map(static function ($v) use ($search, $replace) {
+                                $replaced = array_map(static function($v) use ($search, $replace) {
                                     return str_ireplace($search, $replace, $v);
                                 }, $replaced);
                                 $replaced = array_flip($replaced);
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects the third parameter, array, to be an array"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects the third parameter, array, to be an array");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects the second parameter, replace, to be a string or array"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects the second parameter, replace, to be a string or array");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects the first parameter, search, to be a string or array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects the first parameter, search, to be a string or array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects three parameters: search, replace, and array"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects three parameters: search, replace, and array");
             }
 
             return $replaced;
@@ -517,9 +481,9 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          */
         public static function permute(array $set)
         {
-            $perms = [];
+            $perms = array();
 
-            $j    = 0;
+            $j = 0;
             $size = count($set) - 1;
             $perm = range(0, $size);
 
@@ -576,14 +540,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             // if $sort is a valid sort
                             if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
                                 // if $array is an array of arrays with $field key
-                                $passed = array_filter($array, static function ($v) use ($field) {
+                                $passed = array_filter($array, static function($v) use ($field) {
                                     return is_array($v) && array_key_exists($field, $v);
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the field's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function ($a, $b) use ($field) {
+                                    usort($array, static function($a, $b) use ($field) {
                                         if ($a[$field] < $b[$field]) {
                                             return -1;
                                         }
@@ -600,34 +564,22 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         $array = array_reverse($array);
                                     }
                                 } else {
-                                    throw new InvalidArgumentException(
-                                        __METHOD__ . "() expects parameter one to be an array of arrays with the key '$field'"
-                                    );
+                                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one to be an array of arrays with the key '$field'");
                                 }
                             } else {
-                                throw new InvalidArgumentException(
-                                    __METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-                                );
+                                throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'");
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects parameter three, sort, to be a string sort order"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be a string sort order");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two, field, to be a string field name"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two, field, to be a string field name");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one, array, to be an array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one, array, to be an array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two or three parameters"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two or three parameters");
             }
 
             return $array;
@@ -671,15 +623,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 // use property_exists() to allow null values of explicit public properties
                                 // use isset() to allow "magic" properties via the __get() magic method
                                 //
-                                $passed = array_filter($array, static function ($v) use ($property) {
-                                    return is_object($v)
-                                           && (property_exists($v, $property) || isset($v->$property));
+                                $passed = array_filter($array, static function($v) use ($property) {
+                                    return is_object($v) && (property_exists($v, $property) || isset($v->$property));
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the property's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function ($a, $b) use ($property) {
+                                    usort($array, static function($a, $b) use ($property) {
                                         if ($a->$property < $b->$property) {
                                             return -1;
                                         }
@@ -696,34 +647,22 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         $array = array_reverse($array);
                                     }
                                 } else {
-                                    throw new InvalidArgumentException(
-                                        __METHOD__ . "() expects parameter one to be an array of objects with public property '$property'"
-                                    );
+                                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one to be an array of objects with public property '$property'");
                                 }
                             } else {
-                                throw new InvalidArgumentException(
-                                    __METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-                                );
+                                throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'");
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects parameter three, sort, to be a string sort order"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be a string sort order");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two, property, to be a string public property name"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two, property, to be a string public property name");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one, array, to be an array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one, array, to be an array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two or three parameters"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two or three parameters");
             }
 
             return $array;
@@ -766,14 +705,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 // if $array is an array of objects with public method $method
                                 // use is_callable() to allow "magic" methods
                                 //
-                                $passed = array_filter($array, static function ($v) use ($method) {
+                                $passed = array_filter($array, static function($v) use ($method) {
                                     return is_object($v) && is_callable(array($v, $method));
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the property's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function ($a, $b) use ($method) {
+                                    usort($array, static function($a, $b) use ($method) {
                                         if ($a->$method() < $b->$method()) {
                                             return -1;
                                         }
@@ -790,34 +729,22 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         $array = array_reverse($array);
                                     }
                                 } else {
-                                    throw new InvalidArgumentException(
-                                        __METHOD__ . "() expects parameter one to be an array of objects with public method '$method'"
-                                    );
+                                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one to be an array of objects with public method '$method'");
                                 }
                             } else {
-                                throw new InvalidArgumentException(
-                                    __METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'"
-                                );
+                                throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be 'asc[ending]' or 'desc[ending]'");
                             }
                         } else {
-                            throw new InvalidArgumentException(
-                                __METHOD__ . "() expects parameter three, sort, to be a string sort order"
-                            );
+                            throw new InvalidArgumentException(__METHOD__ . "() expects parameter three, sort, to be a string sort order");
                         }
                     } else {
-                        throw new InvalidArgumentException(
-                            __METHOD__ . "() expects parameter two, method, to be the string name of a public method"
-                        );
+                        throw new InvalidArgumentException(__METHOD__ . "() expects parameter two, method, to be the string name of a public method");
                     }
                 } else {
-                    throw new InvalidArgumentException(
-                        __METHOD__ . "() expects parameter one, array, to be an array"
-                    );
+                    throw new InvalidArgumentException(__METHOD__ . "() expects parameter one, array, to be an array");
                 }
             } else {
-                throw new BadMethodCallException(
-                    __METHOD__ . "() expects two or three parameters"
-                );
+                throw new BadMethodCallException(__METHOD__ . "() expects two or three parameters");
             }
 
             return $array;
@@ -845,7 +772,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
             // select an item to act as our pivot point, since list is unsorted first position is easiest
             $pivot = $array[0];
             // declare our two arrays to act as partitions
-            $left  = array();
+            $left = array();
             $right = array();
             // loop and compare each item in the array to the pivot value, place item in appropriate partition
             for ($i = 1; $i < $length; $i++) {
@@ -859,7 +786,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
             // use recursion to now sort the left and right lists
             return array_merge(static::arrayQuickSort($left), array(
                 $pivot
-            ), static::arrayQuickSort($right));
+            ),                 static::arrayQuickSort($right));
         }
 
         /**
@@ -893,7 +820,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * @copyright: 713uk13m <dev@nguyenanhung.com>
          * @time     : 08/18/2021 23:49
          */
-        public static function arrayToObject($array = [], $str_to_lower = false)
+        public static function arrayToObject($array = array(), $str_to_lower = false)
         {
             if (!is_array($array)) {
                 return $array;
@@ -911,6 +838,313 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                 }
 
                 return $object;
+            }
+
+            return false;
+        }
+
+        /**
+         * Converts an array to an object.
+         *
+         * ### to_object
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * to_object( array $array ): object|null
+         * ```
+         *
+         * #### Example
+         * ```php
+         * $array = [
+         *     'foo' => [
+         *          'bar' => 'baz'
+         *     ]
+         * ];
+         *
+         * $obj = to_object($array);
+         * echo $obj->foo->bar;
+         *
+         * // baz
+         * ```
+         *
+         * @param array $array
+         * The array to be converted.
+         * @return object|null
+         * A std object representation of the converted array.
+         */
+        public static function toObject($array)
+        {
+            $result = json_decode(json_encode($array), false);
+            return is_object($result) ? $result : null;
+        }
+
+        /**
+         * Converts a string or an object to an array.
+         *
+         * ### to_array
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * to_array( string|object $var ): array|null
+         * ```
+         *
+         * #### Example 1 (string)
+         * ```php
+         * $var = 'php';
+         * to_array( $var );
+         *
+         * // (
+         * //     [0] => p
+         * //     [1] => h
+         * //     [2] => p
+         * // )
+         *
+         * ```
+         * #### Example 2 (object)
+         * ```php
+         * $var = new stdClass;
+         * $var->foo = 'bar';
+         *
+         * to_array( $var );
+         *
+         * // (
+         * //     [foo] => bar
+         * // )
+         * ```
+         *
+         * @param string|object $var
+         * String or object.
+         * @return array|null
+         * An array representation of the converted string or object.
+         * Returns null on error.
+         */
+        public static function dump($var)
+        {
+            if (is_string($var)) {
+                return str_split($var);
+            }
+
+            if (is_object($var)) {
+                return json_decode(json_encode($var), true);
+            }
+
+            return null;
+        }
+
+        /**
+         * Returns the first element of an array.
+         *
+         * ### array_first
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * array_first( array $array ): mixed
+         * ```
+         *
+         * #### Example
+         * ```php
+         * $array = [
+         *      'foo' => 'bar',
+         *      'baz' => 'qux'
+         * ];
+         *
+         * array_first( $array )
+         *
+         * // bar
+         * ```
+         *
+         * @param array $array
+         * The concerned array.
+         * @return mixed
+         * The value of the first element, without key. Mixed type.
+         *
+         */
+        public static function first($array)
+        {
+            return $array[array_keys($array)[0]];
+        }
+
+        /**
+         * Returns the last element of an array.
+         *
+         * ### array_last
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * array_last( array $array ): mixed
+         * ```
+         *
+         * #### Example
+         * ```php
+         * $array = [
+         *      'foo' => 'bar',
+         *      'baz' => 'qux'
+         * ];
+         *
+         * array_last( $array )
+         *
+         * // qux
+         * ```
+         *
+         * @param array $array
+         * The concerned array.
+         * @return mixed
+         * The value of the last element, without key. Mixed type.
+         */
+        public static function last($array)
+        {
+            return $array[array_keys($array)[sizeof($array) - 1]];
+        }
+
+        /**
+         * Gets a value in an array by dot notation for the keys.
+         *
+         * ### array_get
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * array_get( string key, array $array ): mixed
+         * ```
+         *
+         * #### Example
+         * ```php
+         * $array = [
+         *      'foo' => 'bar',
+         *      'baz' => [
+         *          'qux => 'foobar'
+         *      ]
+         * ];
+         *
+         * array_get( 'baz.qux', $array );
+         *
+         * // foobar
+         * ```
+         *
+         * @param string $key
+         * The key by dot notation.
+         * @param array  $array
+         * The array to search in.
+         * @return mixed
+         * The searched value, null otherwise.
+         */
+        public static function get($key, $array)
+        {
+            if (is_string($key) && is_array($array)) {
+                $keys = explode('.', $key);
+
+                while (sizeof($keys) >= 1) {
+                    $k = array_shift($keys);
+
+                    if (!isset($array[$k])) {
+                        return null;
+                    }
+
+                    if (sizeof($keys) === 0) {
+                        return $array[$k];
+                    }
+
+                    $array = &$array[$k];
+                }
+            }
+
+            return null;
+        }
+
+        /**
+         * Sets a value in an array using the dot notation.
+         *
+         * ### array_set
+         * Related global function (description see above).
+         *
+         * > #### [( jump back )](#available-php-functions)
+         *
+         * ```php
+         * array_set( string key, mixed value, array $array ): boolean
+         * ```
+         *
+         * #### Example 1
+         * ```php
+         * $array = [
+         *      'foo' => 'bar',
+         *      'baz' => [
+         *          'qux => 'foobar'
+         *      ]
+         * ];
+         *
+         * array_set( 'baz.qux', 'bazqux', $array );
+         *
+         * // (
+         * //     [foo] => bar
+         * //     [baz] => [
+         * //         [qux] => bazqux
+         * //     ]
+         * // )
+         * ```
+         *
+         * #### Example 2
+         * ```php
+         * $array = [
+         *      'foo' => 'bar',
+         *      'baz' => [
+         *          'qux => 'foobar'
+         *      ]
+         * ];
+         *
+         * array_set( 'baz.foo', 'bar', $array );
+         *
+         * // (
+         * //     [foo] => bar
+         * //     [baz] => [
+         * //         [qux] => bazqux
+         * //         [foo] => bar
+         * //     ]
+         * // )
+         * ```
+         *
+         * @param string $key
+         * The key to set using dot notation.
+         * @param mixed  $value
+         * The value to set on the specified key.
+         * @param array  $array
+         * The concerned array.
+         * @return bool
+         * True if the new value was successfully set, false otherwise.
+         */
+        public static function set($key, $value, &$array)
+        {
+            if (is_string($key) && !empty($key)) {
+
+                $keys = explode('.', $key);
+                $arrTmp = &$array;
+
+                while (sizeof($keys) >= 1) {
+                    $k = array_shift($keys);
+
+                    if (!is_array($arrTmp)) {
+                        $arrTmp = array();
+                    }
+
+                    if (!isset($arrTmp[$k])) {
+                        $arrTmp[$k] = array();
+                    }
+
+                    if (sizeof($keys) === 0) {
+                        $arrTmp[$k] = $value;
+                        return true;
+                    }
+
+                    $arrTmp = &$arrTmp[$k];
+                }
             }
 
             return false;
@@ -945,13 +1179,13 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
             }
 
             // swap them
-            $tmp   = $p[$i];
+            $tmp = $p[$i];
             $p[$i] = $p[$j];
             $p[$j] = $tmp;
 
             // now reverse the elements in between by swapping the ends
             for (++$i, $j = $size; $i < $j; ++$i, --$j) {
-                $tmp   = $p[$i];
+                $tmp = $p[$i];
                 $p[$i] = $p[$j];
                 $p[$j] = $tmp;
             }
