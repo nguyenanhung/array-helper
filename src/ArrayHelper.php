@@ -75,17 +75,17 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
 
             while (($i > -1) || ($j > -1)) {
                 if (($j > -1) && $dm[$i][$j - 1] === $dm[$i][$j]) {
-                    $diffs[] = ['value' => $to[$j], 'mask' => 1];
+                    $diffs[] = array('value' => $to[$j], 'mask' => 1);
                     $j--;
                     continue;
                 }
                 if (($i > -1) && $dm[$i - 1][$j] === $dm[$i][$j]) {
-                    $diffs[] = ['value' => $from[$i], 'mask' => -1];
+                    $diffs[] = array('value' => $from[$i], 'mask' => -1);
                     $i--;
                     continue;
                 }
                 {
-                    $diffs[] = ['value' => $from[$i], 'mask' => 0];
+                    $diffs[] = array('value' => $from[$i], 'mask' => 0);
                     $i--;
                     $j--;
                 }

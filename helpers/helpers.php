@@ -28,30 +28,16 @@ if (!function_exists('arrayToObject')) {
      * Function arrayToObject
      *
      * @param array|mixed $array
+     * @param bool        $strToLower
      *
-     * @return array|false|\stdClass
+     * @return array|bool|\stdClass
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
-     * @time     : 07/27/2021 36:10
+     * @time     : 08/18/2021 23:40
      */
-    function arrayToObject($array = array())
+    function arrayToObject($array = array(), $strToLower = false)
     {
-        if (!is_array($array)) {
-            return $array;
-        }
-        $object = new stdClass();
-        $countArray = count($array);
-        if ($countArray > 0) {
-            foreach ($array as $name => $value) {
-                if (!empty($name)) {
-                    $object->$name = arrayToObject($value);
-                }
-            }
-
-            return $object;
-        }
-
-        return false;
+        return nguyenanhung\Libraries\ArrayHelper\ArrayHelper::arrayToObject($array, $strToLower);
     }
 }
 if (!function_exists('arrayToXml')) {
