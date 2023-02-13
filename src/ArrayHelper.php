@@ -187,7 +187,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $array is not empty
                         if (!empty($array)) {
                             // filter the array by the key's prefix
-                            $filtered = self::filterByKey($array, function($k) use ($prefix) {
+                            $filtered = self::filterByKey($array, function ($k) use ($prefix) {
                                 return strpos($k, $prefix) === 0;
                             });
                         }
@@ -448,7 +448,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             if (!empty($array)) {
                                 // flip the array, search/replace, and flip again
                                 $replaced = array_flip($array);
-                                $replaced = array_map(static function($v) use ($search, $replace) {
+                                $replaced = array_map(static function ($v) use ($search, $replace) {
                                     return str_ireplace($search, $replace, $v);
                                 }, $replaced);
                                 $replaced = array_flip($replaced);
@@ -540,14 +540,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                             // if $sort is a valid sort
                             if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
                                 // if $array is an array of arrays with $field key
-                                $passed = array_filter($array, static function($v) use ($field) {
+                                $passed = array_filter($array, static function ($v) use ($field) {
                                     return is_array($v) && array_key_exists($field, $v);
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the field's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function($a, $b) use ($field) {
+                                    usort($array, static function ($a, $b) use ($field) {
                                         if ($a[$field] < $b[$field]) {
                                             return -1;
                                         }
@@ -623,14 +623,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 // use property_exists() to allow null values of explicit public properties
                                 // use isset() to allow "magic" properties via the __get() magic method
                                 //
-                                $passed = array_filter($array, static function($v) use ($property) {
+                                $passed = array_filter($array, static function ($v) use ($property) {
                                     return is_object($v) && (property_exists($v, $property) || isset($v->$property));
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the property's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function($a, $b) use ($property) {
+                                    usort($array, static function ($a, $b) use ($property) {
                                         if ($a->$property < $b->$property) {
                                             return -1;
                                         }
@@ -705,14 +705,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 // if $array is an array of objects with public method $method
                                 // use is_callable() to allow "magic" methods
                                 //
-                                $passed = array_filter($array, static function($v) use ($method) {
+                                $passed = array_filter($array, static function ($v) use ($method) {
                                     return is_object($v) && is_callable(array($v, $method));
                                 });
                                 if (count($array) === count($passed)) {
                                     // sort the array using the property's value
                                     // by default, usort() will return results in ascending order
                                     //
-                                    usort($array, static function($a, $b) use ($method) {
+                                    usort($array, static function ($a, $b) use ($method) {
                                         if ($a->$method() < $b->$method()) {
                                             return -1;
                                         }
@@ -871,12 +871,14 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @param array $array
          * The array to be converted.
+         *
          * @return object|null
          * A std object representation of the converted array.
          */
         public static function toObject($array)
         {
             $result = json_decode(json_encode($array), false);
+
             return is_object($result) ? $result : null;
         }
 
@@ -918,6 +920,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @param string|object $var
          * String or object.
+         *
          * @return array|null
          * An array representation of the converted string or object.
          * Returns null on error.
@@ -961,6 +964,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @param array $array
          * The concerned array.
+         *
          * @return mixed
          * The value of the first element, without key. Mixed type.
          *
@@ -996,6 +1000,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          *
          * @param array $array
          * The concerned array.
+         *
          * @return mixed
          * The value of the last element, without key. Mixed type.
          */
@@ -1034,6 +1039,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * The key by dot notation.
          * @param array  $array
          * The array to search in.
+         *
          * @return mixed
          * The searched value, null otherwise.
          */
@@ -1117,6 +1123,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
          * The value to set on the specified key.
          * @param array  $array
          * The concerned array.
+         *
          * @return bool
          * True if the new value was successfully set, false otherwise.
          */
@@ -1140,6 +1147,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
 
                     if (sizeof($keys) === 0) {
                         $arrTmp[$k] = $value;
+
                         return true;
                     }
 
