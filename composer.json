@@ -23,7 +23,8 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "nguyenanhung/number-helper": "^1.0",
-        "nguyenanhung/string-helper": "^1.0"
+        "nguyenanhung/string-helper": "^1.0",
+        "ext-ctype": "*"
     },
     "autoload": {
         "psr-4": {
