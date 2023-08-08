@@ -193,7 +193,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         if (!empty($array)) {
                             // filter the array by the key's prefix
                             $filtered = self::filterByKey($array, function($k) use ($prefix) {
-                                return strpos($k, $prefix) === 0;
+                                return mb_strpos($k, $prefix) === 0;
                             });
                         }
                     } else {
@@ -251,7 +251,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $wildcard is a string
                         if (is_string($wildcard)) {
                             // if $needle contains the wildcard character
-                            if (strpos($needle, $wildcard) !== false) {
+                            if (mb_strpos($needle, $wildcard) !== false) {
                                 // determine if the neeedle starts or ends with the wildcard
                                 $startsWith = Str::startsWith($needle, $wildcard);
                                 $endsWith = Str::endsWith($needle, $wildcard);
@@ -260,7 +260,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                 // loop through the haystack
                                 foreach ($haystack as $value) {
                                     if ($startsWith && $endsWith) {
-                                        $inArray = strpos($value, $needle) !== false;
+                                        $inArray = mb_strpos($value, $needle) !== false;
                                     } elseif ($startsWith) {
                                         $inArray = Str::endsWith($value, $needle);
                                     } else {
@@ -543,7 +543,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $sort is a string
                         if (is_string($sort)) {
                             // if $sort is a valid sort
-                            if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
+                            if (in_array(mb_strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
                                 // if $array is an array of arrays with $field key
                                 $passed = array_filter($array, static function($v) use ($field) {
                                     return is_array($v) && array_key_exists($field, $v);
@@ -564,7 +564,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         return 0;
                                     });
                                     // if the sort order is descending
-                                    $sort = strtolower($sort);
+                                    $sort = mb_strtolower($sort);
                                     if ($sort === 'desc' || $sort === 'descending') {
                                         $array = array_reverse($array);
                                     }
@@ -623,7 +623,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $sort is a string
                         if (is_string($sort)) {
                             // if $sort is a valid sort
-                            if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
+                            if (in_array(mb_strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
                                 // if $array is an array of objects with $property
                                 // use property_exists() to allow null values of explicit public properties
                                 // use isset() to allow "magic" properties via the __get() magic method
@@ -647,7 +647,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         return 0;
                                     });
                                     // if the sort order is descending
-                                    $sort = strtolower($sort);
+                                    $sort = mb_strtolower($sort);
                                     if ($sort === 'desc' || $sort === 'descending') {
                                         $array = array_reverse($array);
                                     }
@@ -706,7 +706,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                         // if $sort is a string
                         if (is_string($sort)) {
                             // if $sort is a valid sort
-                            if (in_array(strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
+                            if (in_array(mb_strtolower($sort), array('asc', 'ascending', 'desc', 'descending'))) {
                                 // if $array is an array of objects with public method $method
                                 // use is_callable() to allow "magic" methods
                                 //
@@ -729,7 +729,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                                         return 0;
                                     });
                                     // if the sort order is descending
-                                    $sort = strtolower($sort);
+                                    $sort = mb_strtolower($sort);
                                     if ($sort === 'desc' || $sort === 'descending') {
                                         $array = array_reverse($array);
                                     }
@@ -835,7 +835,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                 foreach ($array as $name => $value) {
                     $name = trim($name);
                     if ($strToLower === true) {
-                        $name = strtolower($name);
+                        $name = mb_strtolower($name);
                     }
                     if (!empty($name)) {
                         $object->$name = static::arrayToObject($value);
@@ -1262,7 +1262,7 @@ if (!class_exists('nguyenanhung\Libraries\ArrayHelper\ArrayHelper')) {
                 $command = $str;
             }
 
-            if (strpos($command, '::') !== false) {
+            if (mb_strpos($command, '::') !== false) {
                 // Create a static method callable command
                 $command = explode('::', $command, 2);
             }
