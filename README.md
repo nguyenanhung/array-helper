@@ -1,4 +1,7 @@
-[![Latest Stable Version](http://poser.pugx.org/nguyenanhung/array-helper/v)](https://packagist.org/packages/nguyenanhung/array-helper) [![Total Downloads](http://poser.pugx.org/nguyenanhung/array-helper/downloads)](https://packagist.org/packages/nguyenanhung/array-helper) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/array-helper/v/unstable)](https://packagist.org/packages/nguyenanhung/array-helper) [![License](http://poser.pugx.org/nguyenanhung/array-helper/license)](https://packagist.org/packages/nguyenanhung/array-helper) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/array-helper/require/php)](https://packagist.org/packages/nguyenanhung/array-helper)
+[![Latest Stable Version](https://img.shields.io/packagist/v/nguyenanhung/array-helper.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/array-helper)
+[![Total Downloads](https://img.shields.io/packagist/dt/nguyenanhung/array-helper.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/array-helper)
+[![License](https://img.shields.io/packagist/l/nguyenanhung/array-helper.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/array-helper)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/nguyenanhung/array-helper/php)](https://packagist.org/packages/nguyenanhung/array-helper)
 
 # Array Helper
 
